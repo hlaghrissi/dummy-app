@@ -15,6 +15,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      # Step to print the hostname
+      - name: Print Hostname
+        run: hostname
+
+      # Step to check connectivity to SonarQube server
+      - name: Check SonarQube Server Connectivity
+        run: curl -I ${{ secrets.SONAR_HOST_URL }}
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
