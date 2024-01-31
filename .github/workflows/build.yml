@@ -18,7 +18,7 @@ jobs:
 
       - name: Check if Running in Docker Container
         run: |
-          ls -al
+          ls -al /
           pwd
 
       # Step to check connectivity to SonarQube server
