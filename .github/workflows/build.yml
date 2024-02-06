@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Curl command to test first URL
         run: curl http://host:54426
       - name: Curl command to test second URL
         run: curl 192.168.65.254:54426
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
